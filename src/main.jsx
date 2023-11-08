@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Context>
         <App />
       </Context>
-      <Toaster position="top-right" />
+      <Toaster closeButton position="bottom-center" />
     </Theme>
   </React.StrictMode>
 );
