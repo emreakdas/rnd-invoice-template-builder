@@ -8,8 +8,7 @@ function Playground({ windowSize }) {
 
   useEffect(() => {
     function handleResize() {
-      const { offsetHeight, offsetWidth } =
-        document.getElementById("playground-inside");
+      const { offsetHeight, offsetWidth } = document.getElementById("playground-inside");
       windowSize.current = { width: offsetWidth, heigth: offsetHeight };
     }
 
@@ -25,7 +24,8 @@ function Playground({ windowSize }) {
     setSelectedComponents(
       selectedComponents.map((item) => {
         if (item.key === key) {
-          (item.width = ref.offsetWidth), (item.heigth = ref.offsetHeight);
+          item.width = ref.offsetWidth;
+          item.heigth = ref.offsetHeight;
         }
 
         return item;
