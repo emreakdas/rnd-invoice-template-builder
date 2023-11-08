@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 import Context from "./context/index.jsx"
+import { Toaster } from "sonner";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -12,6 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Context>
         <App />
       </Context>
+      <Toaster position="top-right" />
     </Theme>
   </React.StrictMode>
 );
