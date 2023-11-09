@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { useAppContext } from "../context";
 import { Rnd } from "react-rnd";
 
-function Playground({ windowSize }) {
-  const { selectedComponents, setSelectedComponents } = useAppContext();
+function Playground({ windowSize, style, setEnablePan }) {
+  const { selectedComponents, setSelectedComponents, selectHandle } = useAppContext();
 
   useEffect(() => {
     function handleResize() {
@@ -44,6 +44,13 @@ function Playground({ windowSize }) {
         return item;
       })
     );
+    setEnablePan(true);
+  }
+
+  function handleKeyDown(e, key) {
+    if(e.keyCode === 46){
+      selectHandle(key)
+    }
   }
 
   const boxStyle = {
@@ -53,7 +60,7 @@ function Playground({ windowSize }) {
   };
 
   return (
-    <div id="playground-inside">
+    <div id="playground-inside" style={style}>
       {selectedComponents.map(({ key }) => {
         return (
           <Rnd
@@ -63,6 +70,8 @@ function Playground({ windowSize }) {
             style={boxStyle}
             className="box"
             bounds="parent"
+            tabIndex={0} onKeyUp={(e) => handleKeyDown(e, key)}
+            onDragStart={() => setEnablePan(false)}
             onDragStop={(e, d) => handleOnDragStop(d, key)}
             onResizeStop={(e, direction, ref) => handleOnResizeStop(ref, key)}
           >

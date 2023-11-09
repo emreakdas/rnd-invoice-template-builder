@@ -1,16 +1,30 @@
-import { useRef } from "react";
+import { useRef, useMemo, useState } from "react";
 import { Button } from "@radix-ui/themes";
 import ComponentDropdown from "./components/ComponentDropdown";
 import Playground from "./components/Playground";
 import { useAppContext } from "./context";
-import { toast } from "sonner"
+import { toast } from "sonner";
+import usePanZoom from "use-pan-and-zoom";
 
 function App() {
-  const { selectedComponents } = useAppContext(); 
+  const [enablePan, setEnablePan] = useState(true);
+  const memoPan = useMemo(() => {
+    return {
+      panOnDrag: enablePan,
+      disableWheel: !enablePan,
+      enablePan,
+      enableZoom: enablePan,
+      preventClickOnPan: enablePan,
+      requireCtrlToZoom: true,
+    };
+  }, [enablePan]);
+
+  const { transform, setContainer, panZoomHandlers } = usePanZoom(memoPan);
+  const { selectedComponents } = useAppContext();
   const windowSize = useRef(0);
 
   function handlePreview() {
-    if(selectedComponents.length === 0){
+    if (selectedComponents.length === 0) {
       toast.info("Bileşen eklemeden önizleme yapılamaz.");
       return;
     }
@@ -22,9 +36,20 @@ function App() {
   }
 
   return (
-    <div className="playground">
+    <div
+      className="playground"
+      ref={(el) => {
+        setContainer(el);
+      }}
+      style={{ touchAction: "none" }}
+      {...panZoomHandlers}
+    >
       <ComponentDropdown />
-      <Playground windowSize={windowSize} />
+      <Playground
+        style={{ transform }}
+        windowSize={windowSize}
+        setEnablePan={setEnablePan}
+      />
       <Button
         style={{
           position: "absolute",

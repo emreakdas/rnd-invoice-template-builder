@@ -20,6 +20,9 @@ dependencies:
   sonner:
     specifier: ^1.2.0
     version: 1.2.0(react-dom@18.2.0)(react@18.2.0)
+  use-pan-and-zoom:
+    specifier: ^0.6.5
+    version: 0.6.5(react@18.2.0)
 
 devDependencies:
   '@types/react':
@@ -3313,6 +3316,14 @@ packages:
       '@types/react': 18.2.15
       react: 18.2.0
       tslib: 2.6.2
+    dev: false
+
+  /use-pan-and-zoom@0.6.5(react@18.2.0):
+    resolution: {integrity: sha512-f/w1/AjfhfUUZiQ0+kHAPqwJLDW8mEX1UMiN6aK2LDl9hIpIr4d57h8+WjXFUAtYXJ+I3+CQSoujH3/gChNP7w==}
+    peerDependencies:
+      react: ^17.0.2
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /use-sidecar@1.1.2(@types/react@18.2.15)(react@18.2.0):
