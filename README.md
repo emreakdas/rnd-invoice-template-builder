@@ -9,7 +9,7 @@ Bu proje sürüklenebilir ve yeniden boyutlanabilir şekilde fatura şablonu olu
 ## Özellikler
 
 - Bileşen ekleme-çıkarma (Logo, Ürün Alanı, Fatura Bilgileri, vs.)
-- Bileşen klavyeden "del" tuşu ile silme
+- "del" tuşu ile bileşen silme
 - Sürüklenebilir bileşenler
 - Yeniden boyutlanabilir bileşenler
 - Zoom desteği
