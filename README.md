@@ -18,6 +18,7 @@ Bu proje sürüklenebilir ve yeniden boyutlanabilir şekilde fatura şablonu olu
 
 - Playground alanında size (width, height) seçebilme
 - Önizleme
+- Performans düzeltmeleri
 - ...
 ## Katkı
 
