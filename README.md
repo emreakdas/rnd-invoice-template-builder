@@ -1,26 +1,23 @@
-
 ## Resizable and Draggable Invoice Template Builder
 
-Bu proje sürüklenebilir ve yeniden boyutlanabilir şekilde fatura şablonu oluşturmak için oluşturulmuştur.
+This project is designed to create an invoice template with draggable and resizable components.
 
+## Features
 
-
-
-## Özellikler
-
-- Bileşen ekleme-çıkarma (Logo, Ürün Alanı, Fatura Bilgileri, vs.)
-- "del" tuşu ile bileşen silme
-- Sürüklenebilir bileşenler
-- Yeniden boyutlanabilir bileşenler
-- Zoom desteği
-- Playground alanının sürüklenebilmesi
+- Add/remove components (Logo, Product Area, Invoice Details, etc.)
+- Delete components with the "del" key
+- Draggable components
+- Resizable components
+- Zoom support
+- Draggable playground area
   
-## Yol Haritası
+## Roadmap
 
-- Playground alanında size (width, height) seçebilme
-- Önizleme
-- Performans düzeltmeleri
+- Ability to select size (width, height) for the playground area
+- Preview functionality
+- Performance improvements
 - ...
-## Katkı
 
-Katkılara her zaman açığız! Proje geliştirme aşamasındadır.
+## Contribution
+
+Contributions are always welcome! The project is in the development stage.
