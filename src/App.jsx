@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="playground">
       <ComponentDropdown />
-      <TransformWrapper limitToBounds={false} disabled={enablePan} centerOnInit minScale={0.5}>
+      <TransformWrapper limitToBounds={false} disabled={enablePan} centerOnInit initialScale={0.5} minScale={0.5}>
         <TransformComponent wrapperStyle={{width: "100vw", height: "100vh"}} contentStyle={{width: "100vw", height: "100vh"}} >
           <Playground windowSize={windowSize} setEnablePan={setEnablePan} />
         </TransformComponent>
