@@ -1,25 +1,13 @@
-import { useRef, useMemo, useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@radix-ui/themes";
 import ComponentDropdown from "./components/ComponentDropdown";
 import Playground from "./components/Playground";
 import { useAppContext } from "./context";
 import { toast } from "sonner";
-import usePanZoom from "use-pan-and-zoom";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 function App() {
-  const [enablePan, setEnablePan] = useState(true);
-  const memoPan = useMemo(() => {
-    return {
-      panOnDrag: enablePan,
-      disableWheel: !enablePan,
-      enablePan,
-      enableZoom: enablePan,
-      preventClickOnPan: enablePan,
-      requireCtrlToZoom: true,
-    };
-  }, [enablePan]);
-
-  const { transform, setContainer, panZoomHandlers } = usePanZoom(memoPan);
+  const [enablePan, setEnablePan] = useState(false);
   const { selectedComponents } = useAppContext();
   const windowSize = useRef(0);
 
@@ -36,20 +24,13 @@ function App() {
   }
 
   return (
-    <div
-      className="playground"
-      ref={(el) => {
-        setContainer(el);
-      }}
-      style={{ touchAction: "none" }}
-      {...panZoomHandlers}
-    >
+    <div className="playground">
       <ComponentDropdown />
-      <Playground
-        style={{ transform }}
-        windowSize={windowSize}
-        setEnablePan={setEnablePan}
-      />
+      <TransformWrapper limitToBounds={false} disabled={enablePan} centerOnInit minScale={0.5}>
+        <TransformComponent wrapperStyle={{width: "100vw", height: "100vh"}} contentStyle={{width: "100vw", height: "100vh"}} >
+          <Playground windowSize={windowSize} setEnablePan={setEnablePan} />
+        </TransformComponent>
+      </TransformWrapper>
       <Button
         style={{
           position: "absolute",

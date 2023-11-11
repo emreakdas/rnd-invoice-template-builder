@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+import { useMemo } from "react";
 import { createContext, useContext, useState } from "react";
 
 const Context = createContext();
@@ -5,7 +7,7 @@ const Context = createContext();
 export default function ContextProvider({ children }){
     const [selectedComponents, setSelectedComponents] = useState([]);
 
-    function selectHandle(key) {
+    const selectHandle = useCallback((key) => {
         if (!selectedComponents.find((item) => item.key == key)) {
         setSelectedComponents([
             ...selectedComponents,
@@ -18,9 +20,13 @@ export default function ContextProvider({ children }){
             selectedComponents.filter((item) => item.key != key)
         );
         }
-    }
+    }, [selectedComponents]);
 
-    return <Context.Provider value={{selectedComponents, setSelectedComponents, selectHandle}}>{children}</Context.Provider>;
+    const value = useMemo(() => {
+        return {selectedComponents, setSelectedComponents, selectHandle};
+    }, [selectedComponents, selectHandle])
+
+    return <Context.Provider value={value}>{children}</Context.Provider>;
 }
 
 export const useAppContext = () => useContext(Context);

@@ -1,9 +1,11 @@
 import { DropdownMenu, Button } from "@radix-ui/themes";
 import { useAppContext } from "../context";
 import componentsData from "../data/components-data.json";
+import { memo } from "react";
 
-function ComponentDropdown() {
+const ComponentDropdown = memo(function ComponentDropdown() {
   const {selectedComponents, selectHandle} = useAppContext();  
+  
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
@@ -39,6 +41,6 @@ function ComponentDropdown() {
       </DropdownMenu.Content>
     </DropdownMenu.Root>
   );
-}
+});
 
 export default ComponentDropdown;

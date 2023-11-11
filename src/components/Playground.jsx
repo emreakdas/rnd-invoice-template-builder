@@ -2,8 +2,9 @@ import componentsData from "../data/components-data.json";
 import { useEffect } from "react";
 import { useAppContext } from "../context";
 import { Rnd } from "react-rnd";
+import { memo } from "react";
 
-function Playground({ windowSize, style, setEnablePan }) {
+const Playground = memo(function Playground({ windowSize, setEnablePan }) {
   const { selectedComponents, setSelectedComponents, selectHandle } = useAppContext();
 
   useEffect(() => {
@@ -44,7 +45,7 @@ function Playground({ windowSize, style, setEnablePan }) {
         return item;
       })
     );
-    setEnablePan(true);
+    setEnablePan(false);
   }
 
   function handleKeyDown(e, key) {
@@ -60,7 +61,7 @@ function Playground({ windowSize, style, setEnablePan }) {
   };
 
   return (
-    <div id="playground-inside" style={style}>
+    <div id="playground-inside">
       {selectedComponents.map(({ key }) => {
         return (
           <Rnd
@@ -71,7 +72,7 @@ function Playground({ windowSize, style, setEnablePan }) {
             className="box"
             bounds="parent"
             tabIndex={0} onKeyUp={(e) => handleKeyDown(e, key)}
-            onDragStart={() => setEnablePan(false)}
+            onDragStart={() => setEnablePan(true)}
             onDragStop={(e, d) => handleOnDragStop(d, key)}
             onResizeStop={(e, direction, ref) => handleOnResizeStop(ref, key)}
           >
@@ -81,6 +82,6 @@ function Playground({ windowSize, style, setEnablePan }) {
       })}
     </div>
   );
-}
+});
 
 export default Playground;
