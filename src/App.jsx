@@ -57,7 +57,8 @@ function App() {
             color: "rgba(255,255,255,0.7)"
           }}
         >
-          To use the application, your window size must be greater than or equal to 1200px.
+          <div style={{marginBottom: 8, color: "#fff"}}>Resizable and Draggable Invoice Template Builder</div>
+          <div>To use the application, your window size must be greater than or equal to 1200px.</div>
         </div>
       </div>
     );
