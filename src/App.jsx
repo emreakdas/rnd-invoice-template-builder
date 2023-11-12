@@ -52,8 +52,9 @@ function App() {
             width: "100%",
             maxWidth: "300px",
             transform: "translate(-50%, -50%)",
-            color: "#fff",
-            padding: "12px"
+            padding: "12px",
+            textAlign: "center",
+            color: "rgba(255,255,255,0.7)"
           }}
         >
           To use the application, your window size must be greater than or equal to 1200px.
