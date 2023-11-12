@@ -1,15 +1,33 @@
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@radix-ui/themes";
 import ComponentDropdown from "./components/ComponentDropdown";
 import Playground from "./components/Playground";
 import { useAppContext } from "./context";
 import { toast } from "sonner";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import ResizeConfig from "./components/ResizeConfig";
 
 function App() {
+  const [resizeApp, setResizeApp] = useState(true);
   const [enablePan, setEnablePan] = useState(false);
-  const { selectedComponents } = useAppContext();
-  const windowSize = useRef(0);
+  const { selectedComponents, resizeConfig } = useAppContext();
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 1200) {
+        setResizeApp(false);
+      } else {
+        setResizeApp(true);
+      }
+    }
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   function handlePreview() {
     if (selectedComponents.length === 0) {
@@ -18,17 +36,56 @@ function App() {
     }
 
     console.log({
-      window: windowSize.current,
+      window: resizeConfig,
       components: selectedComponents,
     });
+  }
+
+  if (!resizeApp) {
+    return (
+      <div className="playground">
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            width: "100%",
+            maxWidth: "300px",
+            transform: "translate(-50%, -50%)",
+            color: "#fff",
+            padding: "12px"
+          }}
+        >
+          To use the application, your window size must be greater than or equal to 1200px.
+        </div>
+      </div>
+    );
+  }
+
+  if (resizeConfig === null) {
+    return <ResizeConfig />;
   }
 
   return (
     <div className="playground">
       <ComponentDropdown />
-      <TransformWrapper limitToBounds={false} disabled={enablePan} centerOnInit initialScale={1} minScale={0.5} maxScale={1}>
-        <TransformComponent wrapperStyle={{width: "100vw", height: "100vh"}} contentStyle={{width: "100vw", height: "100vh"}} >
-          <Playground windowSize={windowSize} setEnablePan={setEnablePan} />
+      <TransformWrapper
+        limitToBounds={false}
+        disabled={enablePan}
+        centerOnInit
+        initialScale={1}
+        minScale={0.5}
+        maxScale={1}
+      >
+        <TransformComponent
+          wrapperStyle={{ width: "100vw", height: "100vh" }}
+          contentStyle={{ width: "100vw", height: "100vh" }}
+        >
+          <Playground
+            style={resizeConfig}
+            windowSize={windowSize}
+            setEnablePan={setEnablePan}
+          />
         </TransformComponent>
       </TransformWrapper>
       <Button
@@ -47,7 +104,17 @@ function App() {
       >
         Preview
       </Button>
-      <div style={{position: "absolute", bottom: "12px", left: "12px", color: "rgba(255,255,255,0.5)", fontSize: "13px"}}>The project is being developed</div>
+      <div
+        style={{
+          position: "absolute",
+          bottom: "12px",
+          left: "12px",
+          color: "rgba(255,255,255,0.5)",
+          fontSize: "13px",
+        }}
+      >
+        The project is being developed
+      </div>
     </div>
   );
 }

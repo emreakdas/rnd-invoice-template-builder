@@ -3,23 +3,10 @@ import { useEffect } from "react";
 import { useAppContext } from "../context";
 import { Rnd } from "react-rnd";
 import { memo } from "react";
+import { useRef } from "react";
 
-const Playground = memo(function Playground({ windowSize, setEnablePan }) {
+const Playground = memo(function Playground({ setEnablePan, style }) {
   const { selectedComponents, setSelectedComponents, selectHandle } = useAppContext();
-
-  useEffect(() => {
-    function handleResize() {
-      const { offsetHeight, offsetWidth } = document.getElementById("playground-inside");
-      windowSize.current = { width: offsetWidth, heigth: offsetHeight };
-    }
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   function handleOnResizeStop(ref, key) {
     setSelectedComponents(
@@ -61,7 +48,7 @@ const Playground = memo(function Playground({ windowSize, setEnablePan }) {
   };
 
   return (
-    <div id="playground-inside">
+    <div style={style} ref={playgroundRef}>
       {selectedComponents.map(({ key }) => {
         return (
           <Rnd

@@ -6,6 +6,7 @@ const Context = createContext();
 
 export default function ContextProvider({ children }){
     const [selectedComponents, setSelectedComponents] = useState([]);
+    const [resizeConfig, setResizeConfig] = useState(null);
 
     const selectHandle = useCallback((key) => {
         if (!selectedComponents.find((item) => item.key == key)) {
@@ -23,8 +24,8 @@ export default function ContextProvider({ children }){
     }, [selectedComponents]);
 
     const value = useMemo(() => {
-        return {selectedComponents, setSelectedComponents, selectHandle};
-    }, [selectedComponents, selectHandle])
+        return {selectedComponents, setSelectedComponents, selectHandle, resizeConfig, setResizeConfig};
+    }, [selectedComponents, selectHandle, resizeConfig])
 
     return <Context.Provider value={value}>{children}</Context.Provider>;
 }
