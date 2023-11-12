@@ -13,7 +13,7 @@ function App() {
 
   function handlePreview() {
     if (selectedComponents.length === 0) {
-      toast.info("Bileşen eklemeden önizleme yapılamaz.");
+      toast.info("Cannot preview without adding components.");
       return;
     }
 
@@ -45,8 +45,9 @@ function App() {
         type="button"
         onClick={handlePreview}
       >
-        Önizle
+        Preview
       </Button>
+      <div style={{position: "absolute", bottom: "12px", left: "12px", color: "rgba(255,255,255,0.5)", fontSize: "13px"}}>The project is being developed</div>
     </div>
   );
 }

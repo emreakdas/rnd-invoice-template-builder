@@ -21,7 +21,7 @@ const ComponentDropdown = memo(function ComponentDropdown() {
           variant="classic"
           type="button"
         >
-          Bileşenler
+          Components
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>

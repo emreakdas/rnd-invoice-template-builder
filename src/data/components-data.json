@@ -1,9 +1,9 @@
 {
     "logo": "Logo",
-    "invoice_detail": "Fatura Bilgileri",
-    "products": "Ürün Alanı",
-    "date": "Tarih",
-    "custom_info": "Ek Bilgi Metni",
-    "company_name": "Firma Adı",
-    "total_price": "Toplam Fiyat Alanı"
+    "invoice_detail": "Invoice Detail",
+    "products": "Products Area",
+    "date": "Date",
+    "custom_info": "Custom Detail",
+    "company_name": "Company Name",
+    "total_price": "Total Price Area"
 }
