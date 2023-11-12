@@ -48,7 +48,7 @@ const Playground = memo(function Playground({ setEnablePan, style }) {
   };
 
   return (
-    <div style={style} ref={playgroundRef}>
+    <div style={style} id="playground-inside">
       {selectedComponents.map(({ key }) => {
         return (
           <Rnd

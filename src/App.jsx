@@ -85,7 +85,6 @@ function App() {
         >
           <Playground
             style={resizeConfig}
-            windowSize={windowSize}
             setEnablePan={setEnablePan}
           />
         </TransformComponent>
